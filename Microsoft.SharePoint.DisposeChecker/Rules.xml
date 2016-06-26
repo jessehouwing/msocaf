@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Rules FriendlyName="SharePoint Dispose Rules">
+  <Rule TypeName="SharePointObjectsShouldBeDisposedCorrectly" Category="Custom" CheckId="SPDispose">
+    <Name>SharePoint types must be disposed correctly</Name>
+    <Description>It is crucial to handle Disposable SharePoint objects correctly</Description>
+    <Url>http://msdn.microsoft.com/en-us/library/aa973248.aspx</Url>
+    <Resolution></Resolution>
+    <MessageLevel Certainty="100">Warning</MessageLevel>
+    <FixCategories>DependsOnFix</FixCategories>
+    <Email />
+    <Owner />
+  </Rule>
+</Rules>

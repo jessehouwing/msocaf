@@ -1,0 +1,71 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7BA44AF2-9E7B-4867-AA14-460F300B9A1F}"
+	ProjectSection(SolutionItems) = preProject
+		default.snk = default.snk
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.SharePointOnline.CAF.CustomRules", "Microsoft.SharePointOnline.CAF.CustomRules\Microsoft.SharePointOnline.CAF.CustomRules.csproj", "{8704BB72-092E-4987-BB19-22C2B7CACA46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.SharePoint.DisposeChecker", "Microsoft.SharePoint.DisposeChecker\Microsoft.SharePoint.DisposeChecker.csproj", "{9119355F-6CCD-4926-9311-71510E466304}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		debug|Any Cpu = debug|Any Cpu
+		Visual Studio 15|Any Cpu = Visual Studio 15|Any Cpu
+		Visual Studio 2010|Any Cpu = Visual Studio 2010|Any Cpu
+		Visual Studio 2012|Any Cpu = Visual Studio 2012|Any Cpu
+		Visual Studio 2013|Any Cpu = Visual Studio 2013|Any Cpu
+		Visual Studio 2015|Any Cpu = Visual Studio 2015|Any Cpu
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8704BB72-092E-4987-BB19-22C2B7CACA46}.debug|Any Cpu.ActiveCfg = Visual Studio 15|Any CPU
+		{8704BB72-092E-4987-BB19-22C2B7CACA46}.debug|Any Cpu.Build.0 = Visual Studio 15|Any CPU
+		{8704BB72-092E-4987-BB19-22C2B7CACA46}.Visual Studio 15|Any Cpu.ActiveCfg = Visual Studio 15|Any CPU
+		{8704BB72-092E-4987-BB19-22C2B7CACA46}.Visual Studio 15|Any Cpu.Build.0 = Visual Studio 15|Any CPU
+		{8704BB72-092E-4987-BB19-22C2B7CACA46}.Visual Studio 2010|Any Cpu.ActiveCfg = Visual Studio 2010|Any CPU
+		{8704BB72-092E-4987-BB19-22C2B7CACA46}.Visual Studio 2010|Any Cpu.Build.0 = Visual Studio 2010|Any CPU
+		{8704BB72-092E-4987-BB19-22C2B7CACA46}.Visual Studio 2012|Any Cpu.ActiveCfg = Visual Studio 2012|Any CPU
+		{8704BB72-092E-4987-BB19-22C2B7CACA46}.Visual Studio 2012|Any Cpu.Build.0 = Visual Studio 2012|Any CPU
+		{8704BB72-092E-4987-BB19-22C2B7CACA46}.Visual Studio 2013|Any Cpu.ActiveCfg = Visual Studio 2013|Any CPU
+		{8704BB72-092E-4987-BB19-22C2B7CACA46}.Visual Studio 2013|Any Cpu.Build.0 = Visual Studio 2013|Any CPU
+		{8704BB72-092E-4987-BB19-22C2B7CACA46}.Visual Studio 2015|Any Cpu.ActiveCfg = Visual Studio 2015|Any CPU
+		{8704BB72-092E-4987-BB19-22C2B7CACA46}.Visual Studio 2015|Any Cpu.Build.0 = Visual Studio 2015|Any CPU
+		{9119355F-6CCD-4926-9311-71510E466304}.debug|Any Cpu.ActiveCfg = Visual Studio 15|Any CPU
+		{9119355F-6CCD-4926-9311-71510E466304}.debug|Any Cpu.Build.0 = Visual Studio 15|Any CPU
+		{9119355F-6CCD-4926-9311-71510E466304}.Visual Studio 15|Any Cpu.ActiveCfg = Visual Studio 15|Any CPU
+		{9119355F-6CCD-4926-9311-71510E466304}.Visual Studio 15|Any Cpu.Build.0 = Visual Studio 15|Any CPU
+		{9119355F-6CCD-4926-9311-71510E466304}.Visual Studio 2010|Any Cpu.ActiveCfg = Visual Studio 2010|Any CPU
+		{9119355F-6CCD-4926-9311-71510E466304}.Visual Studio 2010|Any Cpu.Build.0 = Visual Studio 2010|Any CPU
+		{9119355F-6CCD-4926-9311-71510E466304}.Visual Studio 2012|Any Cpu.ActiveCfg = Visual Studio 2012|Any CPU
+		{9119355F-6CCD-4926-9311-71510E466304}.Visual Studio 2012|Any Cpu.Build.0 = Visual Studio 2012|Any CPU
+		{9119355F-6CCD-4926-9311-71510E466304}.Visual Studio 2013|Any Cpu.ActiveCfg = Visual Studio 2013|Any CPU
+		{9119355F-6CCD-4926-9311-71510E466304}.Visual Studio 2013|Any Cpu.Build.0 = Visual Studio 2013|Any CPU
+		{9119355F-6CCD-4926-9311-71510E466304}.Visual Studio 2015|Any Cpu.ActiveCfg = Visual Studio 2015|Any CPU
+		{9119355F-6CCD-4926-9311-71510E466304}.Visual Studio 2015|Any Cpu.Build.0 = Visual Studio 2015|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://jessehouwing:8080/tfs/defaultcollection
+		SccProjectUniqueName0 = Microsoft.SharePointOnline.CAF.CustomRules\\Microsoft.SharePointOnline.CAF.CustomRules.csproj
+		SccProjectName0 = Microsoft.SharePointOnline.CAF.CustomRules
+		SccAuxPath0 = http://jessehouwing:8080/tfs/defaultcollection
+		SccLocalPath0 = Microsoft.SharePointOnline.CAF.CustomRules
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName1 = Microsoft.SharePoint.DisposeChecker\\Microsoft.SharePoint.DisposeChecker.csproj
+		SccProjectName1 = Microsoft.SharePoint.DisposeChecker
+		SccAuxPath1 = http://jessehouwing:8080/tfs/defaultcollection
+		SccLocalPath1 = Microsoft.SharePoint.DisposeChecker
+		SccProvider1 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = CodeAnalysis.vsmdi
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Rules FriendlyName="SharePoint Custom Rules">
+  <Rule TypeName="SharePointCustomItemCheck" Category="Custom" CheckId="ItemCount001">
+    <Name>Use of SPList.Items</Name>
+    <Description>Do not use SPList.Items, as it selects all items from all subfolders, including all fields in the list</Description>
+    <Url>Please refer to custom rules section in help file for details</Url>
+    <Resolution>Remove SPList.Items. For retrieving all items in a list use SPList.GetItems(SPQuery query)</Resolution>
+    <MessageLevel Certainty="100">Error</MessageLevel>
+    <Email></Email>
+    <FixCategories>Breaking</FixCategories>
+    <Owner></Owner>
+  </Rule>
+  <Rule TypeName="SharePointCustomRowLimitExistCheck" Category="Custom" CheckId="RowLimitExist001">
+    <Name>SPQuery object without RowLimit property</Name>
+    <Description>Do not use SPQuery object without setting the RowLimit property. An SPQuery object without a value for RowLimit will perform poorly and fail on large lists. Specify a RowLimit between 1 and 2000 and, if necessary, page through the list.</Description>
+    <Url>Please refer to custom rules section in help file for details</Url>
+    <Resolution Name ="RowLimitForLocalObject">Set the RowLimit property of SPQuery object {0} in method {1} in class {2}</Resolution>
+    <Resolution Name="RowLimitForMemberObject">Set the RowLimit property of SPQuery object {0} in class {1} in namespace {2}</Resolution>
+    <Resolution>An SPQuery object without a value for RowLimit will perform poorly and fail on large lists. Specify a RowLimit between 1 and 2000 and, if necessary, page through the list.</Resolution>
+    <MessageLevel Certainty="100">Error</MessageLevel>
+    <Email></Email>
+    <FixCategories>Breaking</FixCategories>
+    <Owner></Owner>
+  </Rule>
+  <Rule TypeName="SharePointCustomRowLimitValueCheck" Category="Custom" CheckId="RowLimitValue001">
+    <Name>SPQuery RowLimit value range</Name>
+    <Description>Do not use SPQuery object with setting the RowLimit value beyond range 1 to 2000. An SPQuery object without a value for RowLimit will perform poorly and fail on large lists. Specify a RowLimit between 1 and 2000 and, if necessary, page through the list.</Description>
+    <Url>Please refer to custom rules section in help file for details</Url>
+    <Resolution>RowLimit value set to the SPQuery object {0} in the method {1}, in class {2} is {3}. Set the RowLimit value in the range of 1 to 2000.</Resolution>
+    <MessageLevel Certainty="100">Error</MessageLevel>
+    <Email></Email>
+    <FixCategories>Breaking</FixCategories>
+    <Owner></Owner>
+  </Rule>
+  <Rule TypeName="SharePointItemsCollectionCheck" Category="Custom" CheckId="ItemCollection001">
+    <Name>SPListItemCollection\GetItemByID inside loop.</Name>
+    <Description>Do not retrieve SPListItemCollection inside loop. Iterating through items of Sharepoint List, in every loop, if we request a new SPListItemCollection object when accessing the Items property. The Items property is not cached and therefore always requests all items from the database over and over again.</Description>
+    <Url>Please refer to custom rules section in help file for details</Url>
+    <Resolution>SPListItemCollection is retrived in the method {0} insde the loop. The API used is - {1}. SPListItemCollection to be retrieved before iterating through the loop</Resolution>
+    <MessageLevel Certainty="100">Error</MessageLevel>
+    <Email></Email>
+    <FixCategories>Breaking</FixCategories>
+    <Owner></Owner>
+  </Rule>
+  <Rule TypeName="SharePointListItemUpdateCheck" Category="Custom" CheckId="ListItemUpdate001">
+    <Name>SPListItem.Update() inside loop</Name>
+    <Description>Do not use SPListItem.Update() for large number of items.</Description>
+    <Url>Please refer to custom rules section in help file for details</Url>
+    <Resolution>SPListItem.Update() is found in the method {0}. Do not use SPListItem.Update() inside the loop. Instead use SPWeb.ProcessBatchData</Resolution>
+    <MessageLevel Certainty="100">Error</MessageLevel>
+    <Email></Email>
+    <FixCategories>Breaking</FixCategories>
+    <Owner></Owner>
+  </Rule>
+  <Rule TypeName="SharePointTimerjobImplementationCheck" Category="Custom" CheckId="TimerJob001">
+    <Name>Implementation of Timer jobs</Name>
+    <Description>The Timer job is not implemented in the way it is expeted to be. To implement timer job there has to be a class that implements SPJobDefinition. The Feature class should be present.
+      Inside this class there should be a method FeatureActivated. In that method there should be the code that checks if job is already present.
+      Also SPMinuteSchedule() is to be used to schedule the job. There should be method FeatureDeactivating in which method to delete the job is called</Description>
+    <Url>Please refer to custom rules section in help file for details</Url>
+    <Resolution Name ="JobExistsCheck">FeatureActivated event of SPFeatureReceiver does not contain the definition for job exist check. First verify if there exist any job with the same name. If exists delete the existing job and then use the new.</Resolution>
+    <Resolution Name ="JobMinuteScheduleCheck">FeatureActivated event of SPFeatureReceiver is not using SPMinuteSchedule() to schedule the job. Use SPMinuteSchedule to schedule the job.</Resolution>
+    <Resolution Name ="JobDeleteCheck">FeatureDeactivating event of SPFeatureReceiver does not contain the definition for job delete. Delte the job in FeatureDeactivating event</Resolution>
+    <Resolution Name ="JobFeatureReceiverCheck">There does not exists a class that implemets Microsoft.SharePoint.SPFeatureReceiver</Resolution>
+    <MessageLevel Certainty="100">Error</MessageLevel>
+    <Email></Email>
+    <FixCategories>Breaking</FixCategories>
+    <Owner></Owner>
+  </Rule>
+  <Rule TypeName="SharePointWebconfigEditCheck" Category="Custom" CheckId="WebconfigEdit001">
+    <Name>Editing Web config files</Name>
+    <Description>Editing Web config file for any operation is not allowed</Description>
+    <Url>Please refer to custom rules section in help file for details</Url>
+    <Resolution>Do not edit Web config file for any operation through code</Resolution>
+    <MessageLevel Certainty="100">Error</MessageLevel>
+    <Email></Email>
+    <FixCategories>Breaking</FixCategories>
+    <Owner></Owner>
+  </Rule>
+  <Rule TypeName="SharePointDeprecatedAPICheck" Category="Custom" CheckId="DeprecatedAPI001">
+    <Name>Deprecated APIs</Name>
+    <Description>Using  deprecated APIs could be lead to block migration to Sharepoint 2010. So using Deprecated APIs is not allowed.</Description>
+    <Url>Please refer to custom rules section in help file for details</Url>
+    <Resolution>Method {0} is using deprecated API {1}. {2} Using  deprecated APIs could lead to block migration to Sharepoint 2010. For the list of deprecated APIs and alternative appraoch for that API check the files "SPS2010NewlyDeprecated" and "SPS2010Deprecated" which can be viewed on the MS Site mentioned in the adjoining help URL.</Resolution>
+    <MessageLevel Certainty="100">Error</MessageLevel>
+    <Email></Email>
+    <FixCategories>Breaking</FixCategories>
+    <Owner></Owner>
+  </Rule>
+  <Rule TypeName="SharePointVerboseLoggingCheck" Category="Custom" CheckId="VerboseLogging001">
+    <Name>Verbose logging\tracing</Name>
+    <Description>Verbose logging or tracing information can lead to huge log files and affect the performance. So do not set the Verbose logging on.</Description>
+    <Url>Please refer to custom rules section in help file for details</Url>
+    <Resolution>Do not set tracing or logging severity to Verbose. Keep the default logging setting as it is or change the Verbose setting.</Resolution>
+    <MessageLevel Certainty="100">Error</MessageLevel>
+    <Email></Email>
+    <FixCategories>Breaking</FixCategories>
+    <Owner></Owner>
+  </Rule> 
+  <Rule TypeName="SharePointMonitorScopeCheck" Category="Custom" CheckId="MonitorScope001">
+    <Name>Use of SPMonitoredScope</Name>
+    <Description>When enabling developer dashboard feature in SharePoint 2010, in order to get all of the customcode included in the developer dashboard output, wrap it in a monitored scope</Description>
+    <Url>Please refer to custom rules section in help file for details</Url>
+    <Resolution>Use SPMonitoredScope to wrap the code so that the performance measures for the webpart can be tracked in Developer Dashboard in SharePoint 2010.</Resolution>
+    <MessageLevel Certainty="100">Error</MessageLevel>
+    <Email></Email>
+    <FixCategories>Breaking</FixCategories>
+    <Owner></Owner>
+  </Rule>
+  <Rule TypeName="SharePointMonitorScopeWarningCheck" Category="Custom" CheckId="MonitorScope002">
+    <Name>Use of SPMonitoredScope in OnInit and Render</Name>
+    <Description>To get all of the customcode included in the developer dashboard output, wrap it in a monitored scope, but avoid it using in OnInit and Render event handlers</Description>
+    <Url>Please refer to custom rules section in help file for details</Url>
+    <Resolution>Use SPMonitoredScope to wrap the code so that the performance measures for the webpart can be tracked in Developer Dashboard in SharePoint 2010. But avoid using SPMonitoredScope in OnInit and Render event handlers</Resolution>
+    <MessageLevel Certainty="95">Warning</MessageLevel>
+    <Email></Email>
+    <FixCategories>NonBreaking</FixCategories>
+    <Owner></Owner>
+  </Rule>
+  <Rule TypeName="SharePointOutofBoxFilesModificationCheck" Category="Custom" CheckId="OutofBoxFilesModification001">
+    <Name>Out-Of-Box files modification</Name>
+    <Description>Modifying out of box files could lead to content not being rendered properly. So do not moodify out of box files</Description>
+    <Url>Please refer to custom rules section in help file for details</Url>
+    <Resolution>Out of box file {0} is modfied outside. Remove the modfication in the out of box file. Modifying these files may ‘break’ SharePoint in some way if you change the wrong part of the file</Resolution>
+    <MessageLevel Certainty="100">Error</MessageLevel>
+    <Email></Email>
+    <FixCategories>Breaking</FixCategories>
+    <Owner></Owner>
+  </Rule>
+  <Rule TypeName="SharePointInlineCodeSupportCheck" Category="Custom" CheckId="InlineCodeSupport001">
+    <Name>Inline code ASPX pages</Name>
+    <Description>Because inline code can run with full trust on the server, it is possible for a developer to expose data from anywhere in the SharePoint environment by making a call to elevate the privileges of the code during run time. As a best practice, any inline code should therefore be reviewed for security implications before it is allowed to be installed and run on the server.</Description>
+    <Url>Please refer to custom rules section in help file for details</Url>
+    <Resolution>Inline code exists in file {0}. Remove inline code present in the aspx pages. Inline code is not recommended within a site definition due to the issues involved with the code no longer rendering as soon as the page is customized. Inline code is supportable if included on a page in the _layouts directory. Inline code should not be allowed through the PageParserPath exclusion, except in extremely rare circumstances, because it can be modified without going through any review process. As a result, it represents a danger to the environment’s performance and security. Adding PageParserPath element to the web.config files is not allowed. Modifying these files may ‘break’ SharePoint in some way if you change the wrong part of the file</Resolution>
+    <MessageLevel Certainty="100">Error</MessageLevel>
+    <Email></Email>
+    <FixCategories>Breaking</FixCategories>
+    <Owner></Owner>
+  </Rule>
+  <Rule TypeName="SPDiagnosticsService" Category="Custom" CheckId="SPDiagnosticsService">
+    <Name>SPDiagnosticsService </Name>
+    <Description>SPDiagnosticsService should be called at start and end of functions in Timer Jobs/Event Receiver/Feature receiver/Web Services.</Description>
+    <Url>Please refer to custom rules section in help file for details</Url>
+    <Resolution>Please call SPDiagnosticsService.WriteTrace at start and end of functions in Timer Jobs/Event Receiver/Feature receiver/Web Services.</Resolution>
+    <MessageLevel Certainty="100">Error</MessageLevel>
+    <Email></Email>
+    <FixCategories>Breaking</FixCategories>
+    <Owner></Owner>
+  </Rule>
+  <Rule TypeName="SharePointMonitorScopeWebpartCheck" Category="Custom" CheckId="SPMonitScope">
+    <Name>SharePointMonitorScope Webpart Check</Name>
+    <Description>SPMonitoredScope should be enabled for all custom methods of Webparts </Description>
+    <Url>Please refer to custom rules section in help file for details</Url>
+    <Resolution>SPMonitoredScope should be enabled for all custom methods of Webparts</Resolution>
+    <MessageLevel Certainty="100">Error</MessageLevel>
+    <Email></Email>
+    <FixCategories>Breaking</FixCategories>
+    <Owner></Owner>
+  </Rule>
+  <Rule TypeName="ULSLoggingCustomRule" Category="Custom" CheckId="ULSLogging">
+    <Name>ULS logging in each catch block.</Name>
+    <Description>Detects if ULS Logging is done in all the catch blocks. Additionally, detects if calls to unsupported APIs for logging is made. </Description>
+    <Url>Please refer to custom rules section in help file for details</Url>
+    <Resolution>blank</Resolution>
+    <Email></Email>
+    <MessageLevel Certainty="80">Error</MessageLevel>
+    <FixCategories>Breaking</FixCategories>
+    <Owner>Microsoft Corporation</Owner>
+  </Rule>
+  <Rule TypeName="SharePointBlobCacheCheck" Category="Custom" CheckId="BlobCache001">
+    <Name>BlobCache value editing in Web.Config is prohibited</Name>
+    <Description>Editing of BlobCache settings in web.config is prohibited</Description>
+    <Url>Please refer to custom rules section in help file for details</Url>
+    <Resolution>Editing of BlobCache settings in web.config is prohibited</Resolution>
+    <MessageLevel Certainty="90">Error</MessageLevel>
+    <Email></Email>
+    <FixCategories>Breaking</FixCategories>
+    <Owner></Owner>
+  </Rule>
+  <Rule TypeName="SharePointRunWithElevatedPrivilegesCheck" Category="Custom" CheckId="RunWithElevatedPrivileges001">
+    <Name>RunWithElevatedPrivileges Restrictions</Name>
+    <Description>RunWithElevatedPrivileges Restrictions - File/Folder Deletion, Deleting User Profiles and Start/Stop Services</Description>
+    <Url>Please refer to custom rules section in help file for details</Url>
+    <Resolution Name ="FileDeleteOperationCheck">File/Folder Delete operation {0} in RunWithElevatedPriveleges delegate is prohibited</Resolution>
+    <Resolution Name ="ProfileDeleteOperationCheck">User Profile Delete operation in RunWithElevatedPriveleges delegate is prohibited</Resolution>
+    <Resolution Name ="ServiceOperationCheck">Operations on critical service {0} in RunWithElevatedPriveleges delegate is prohibited</Resolution>
+    <MessageLevel Certainty="90">Error</MessageLevel>
+    <Email></Email>
+    <FixCategories>Breaking</FixCategories>
+    <Owner></Owner>
+  </Rule>
+  <Rule TypeName="SharePointFeatureReceiverCheck" Category="Custom" CheckId="FeatureReceiver001">
+    <Name>SharePointFeatureReceiver Check</Name>
+    <Description>SharePoint FeatureReceiever error</Description>
+    <Url>Please refer to custom rules section in help file for details</Url>
+    <Resolution>Feature</Resolution>
+    <MessageLevel Certainty="90">Error</MessageLevel>
+    <Email></Email>
+    <FixCategories>Breaking</FixCategories>
+    <Owner></Owner>
+  </Rule>
+</Rules>
