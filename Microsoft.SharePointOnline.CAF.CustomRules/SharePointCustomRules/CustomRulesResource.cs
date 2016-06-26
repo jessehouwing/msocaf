@@ -1,4 +1,4 @@
-namespace SharePointCustomRules
+﻿namespace SharePointCustomRules
 {
     using System;
     using System.CodeDom.Compiler;
@@ -8,7 +8,7 @@ namespace SharePointCustomRules
     using System.Resources;
     using System.Runtime.CompilerServices;
 
-    [GeneratedCode("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0"), DebuggerNonUserCode, CompilerGenerated]
+    [DebuggerNonUserCode, GeneratedCode("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0"), CompilerGenerated]
     internal class CustomRulesResource
     {
         private static CultureInfo resourceCulture;
@@ -278,3 +278,4 @@ namespace SharePointCustomRules
         }
     }
 }
+

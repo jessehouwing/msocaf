@@ -1,4 +1,4 @@
-namespace SharePointCustomRules
+﻿namespace SharePointCustomRules
 {
     using Microsoft.FxCop.Sdk;
     using System;
@@ -29,11 +29,7 @@ namespace SharePointCustomRules
                         if (obj2.MethodName.Equals(string.Empty))
                         {
                             namedResolution = this.GetNamedResolution("RowLimitForMemberObject", new string[] { obj2.ObjectName, obj2.ClassName, obj2.NameSpaceName });
-#if (ORIGINAL)
                             base.Problems.Add(new Problem(namedResolution, Convert.ToString(num)));
-#else
-                            base.Problems.Add(new Problem(namedResolution, obj2.ObjectNode, Convert.ToString(num)));
-#endif
                             obj2.IsProblemAdded = true;
                         }
                     }
@@ -68,11 +64,7 @@ namespace SharePointCustomRules
                             {
                                 namedResolution = this.GetNamedResolution("RowLimitForLocalObject", new string[] { obj2.ObjectName, obj2.MethodName, obj2.ClassName });
                             }
-#if ORIGINAL
                             base.Problems.Add(new Problem(namedResolution, Convert.ToString(num)));
-#else
-                            base.Problems.Add(new Problem(namedResolution, obj2.ObjectNode, Convert.ToString(num)));
-#endif
                             obj2.IsProblemAdded = true;
                         }
                     }
@@ -126,23 +118,20 @@ namespace SharePointCustomRules
                         if (((current.ObjectType.Equals(field.Type.FullName) && current.ObjectName.Equals(field.Name.Name)) && current.MethodName.Equals(string.Empty)) && current.ClassName.Equals(field.DeclaringType.FullName))
                         {
                             flag = true;
-                            goto Label_00A5;
+                            goto Label_00A9;
                         }
                     }
                 }
-            Label_00A5:
+            Label_00A9:
                 if (!flag)
                 {
-                    current = new SPQueryObject();
-#if ORIGINAL
-#else
-                    current.ObjectNode = field;
-#endif
-                    current.ObjectType = field.Type.FullName;
-                    current.ObjectName = field.Name.Name;
-                    current.ClassName = field.DeclaringType.FullName;
-                    current.NameSpaceName = field.DeclaringType.Namespace.Name;
-                    current.IsStatic = field.IsStatic;
+                    current = new SPQueryObject {
+                        ObjectType = field.Type.FullName,
+                        ObjectName = field.Name.Name,
+                        ClassName = field.DeclaringType.FullName,
+                        NameSpaceName = field.DeclaringType.Namespace.Name,
+                        IsStatic = field.IsStatic
+                    };
                     this.m_listSPQueryObject.Add(current);
                 }
             }
@@ -191,22 +180,19 @@ namespace SharePointCustomRules
                             if (((current.ObjectType.Equals(local.Type.FullName) && current.ObjectName.Equals(local.Name.Name)) && current.ClassName.Equals(method.DeclaringType.FullName)) && current.MethodName.Equals(method.Name.Name))
                             {
                                 flag = true;
-                                goto Label_00F5;
+                                goto Label_00F6;
                             }
                         }
                     }
-                Label_00F5:
+                Label_00F6:
                     if (!flag)
                     {
-                        current = new SPQueryObject();
-#if ORIGINAL
-#else
-                        current.ObjectNode = local;
-#endif
-                        current.ObjectType = local.Type.FullName;
-                        current.ObjectName = local.Name.Name;
-                        current.MethodName = method.Name.Name;
-                        current.ClassName = method.DeclaringType.FullName;
+                        current = new SPQueryObject {
+                            ObjectType = local.Type.FullName,
+                            ObjectName = local.Name.Name,
+                            MethodName = method.Name.Name,
+                            ClassName = method.DeclaringType.FullName
+                        };
                         this.m_listSPQueryObject.Add(current);
                     }
                 }
@@ -238,22 +224,19 @@ namespace SharePointCustomRules
                             if (((current.ObjectType.Equals(parameter.Type.FullName) && current.ObjectName.Equals(parameter.Name.Name)) && current.ClassName.Equals(method.DeclaringType.FullName)) && current.MethodName.Equals(method.Name.Name))
                             {
                                 flag = true;
-                                goto Label_00E5;
+                                goto Label_00E6;
                             }
                         }
                     }
-                Label_00E5:
+                Label_00E6:
                     if (!flag)
                     {
-                        current = new SPQueryObject();
-#if ORIGINAL
-#else
-                        current.ObjectNode = parameter;
-#endif
-                        current.ObjectType = parameter.Type.FullName;
-                        current.ObjectName = parameter.Name.Name;
-                        current.MethodName = method.Name.Name;
-                        current.ClassName = method.DeclaringType.FullName;
+                        current = new SPQueryObject {
+                            ObjectType = parameter.Type.FullName,
+                            ObjectName = parameter.Name.Name,
+                            MethodName = method.Name.Name,
+                            ClassName = method.DeclaringType.FullName
+                        };
                         this.m_listSPQueryObject.Add(current);
                     }
                 }
@@ -357,3 +340,4 @@ namespace SharePointCustomRules
         }
     }
 }
+

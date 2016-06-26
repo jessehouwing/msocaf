@@ -1,4 +1,4 @@
-namespace SharePointCustomRules
+﻿namespace SharePointCustomRules
 {
     using Microsoft.FxCop.Sdk;
     using System;
@@ -19,7 +19,7 @@ namespace SharePointCustomRules
                     for (short i = 0; i < method.Instructions.Count; i = (short) (i + 1))
                     {
                         Instruction instruction = method.Instructions[i];
-                        if ((null != instruction.Value) && instruction.Value.ToString().Contains("Microsoft.SharePoint.Administration.SPWebConfigModification("))
+                        if ((null != instruction.Value) && (instruction.Value.ToString().Contains("Microsoft.SharePoint.Administration.SPWebConfigModification(") || instruction.Value.ToString().Contains("Microsoft.SharePoint.Administration.SPWebConfigModification.set_Path")))
                         {
                             for (int j = i - 1; j > 0; j--)
                             {
@@ -30,11 +30,7 @@ namespace SharePointCustomRules
                                 if (method.Instructions[j].Value.ToString().Contains("BlobCache"))
                                 {
                                     Resolution resolution = base.GetResolution(new string[] { method.ToString() });
-#if (ORIGINAL)
                                     base.Problems.Add(new Problem(resolution));
-#else
-                                    base.Problems.Add(new Problem(resolution, method.Instructions[j]));
-#endif
                                 }
                             }
                         }
@@ -49,3 +45,4 @@ namespace SharePointCustomRules
         }
     }
 }
+

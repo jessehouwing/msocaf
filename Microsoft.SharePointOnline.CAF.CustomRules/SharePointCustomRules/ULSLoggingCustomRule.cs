@@ -1,10 +1,10 @@
-namespace SharePointCustomRules
+﻿namespace SharePointCustomRules
 {
     using Microsoft.FxCop.Sdk;
+    using Microsoft.VisualStudio.CodeAnalysis.Extensibility;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Runtime.CompilerServices;
 
     public class ULSLoggingCustomRule : BaseIntrospectionRule
     {
@@ -54,7 +54,7 @@ namespace SharePointCustomRules
                 this.PopulateCallers();
                 foreach (Method method in this.methodsToProcessFinally.Values)
                 {
-                    if (Enumerable.Any<Instruction>(method.Instructions, i => (i.OpCode == OpCode._Catch)))
+                    if (method.Instructions.Any<Instruction>(t => t.OpCode == OpCode._Catch))
                     {
                         bool flag = false;
                         bool flag2 = false;
@@ -101,20 +101,20 @@ namespace SharePointCustomRules
                                 }
                                 if (flag2)
                                 {
-                                    SourceContext context = stack.Pop();
+                                    SourceContext sourceContext = stack.Pop();
                                     lock (SyncObjectForProblemAddition)
                                     {
                                         if (!flag4)
                                         {
                                             string str = string.Empty;
                                             bool flag5 = false;
-                                            if (string.IsNullOrEmpty(context.FileName))
+                                            if (string.IsNullOrEmpty(sourceContext.FileName))
                                             {
                                                 str = "'[symbols not found to locate the line number]'";
                                             }
                                             else
                                             {
-                                                str = context.StartLine.ToString();
+                                                str = sourceContext.StartLine.ToString();
                                                 flag5 = true;
                                             }
                                             resolution = new Resolution("The catch block at line number {0} in method {1} must log to ULS Logs. For ULS logging, please use the TraceEvent sample on MSDN or Microsoft.SharePoint.Administration.SPDiagnosticsServiceBase.WriteTrace API in SharePoint 2010.", new string[] { str, method.FullName });
@@ -122,31 +122,25 @@ namespace SharePointCustomRules
                                             {
                                                 if (!fullyQualifiedResolutionStrings.Contains(resolution.ToString()))
                                                 {
-#if ORIGINAL
-                                                    problem = new Problem(resolution, context);
-#else
-                                                    problem = new Problem(resolution, instruction);
-#endif
-                                                    problem.Certainty = 90;
-                                                    problem.FixCategory = Microsoft.VisualStudio.CodeAnalysis.Extensibility.FixCategories.NonBreaking;
-                                                    problem.Id = this.GetNextId();
-                                                    problem.MessageLevel = Microsoft.VisualStudio.CodeAnalysis.Extensibility.MessageLevel.Warning;
-                                                     base.Problems.Add(problem);
+                                                    problem = new Problem(resolution, sourceContext) {
+                                                        Certainty = 90,
+                                                        FixCategory = FixCategories.NonBreaking,
+                                                        Id = this.GetNextId(),
+                                                        MessageLevel = MessageLevel.Warning
+                                                    };
+                                                    base.Problems.Add(problem);
                                                     fullyQualifiedResolutionStrings.Add(resolution.ToString());
                                                 }
                                             }
                                             else
                                             {
-#if ORIGINAL
-                                                problem = new Problem(resolution, context);
-#else
-                                                problem = new Problem(resolution, instruction);
-#endif
-                                                problem.Certainty = 90;
-                                                problem.FixCategory = Microsoft.VisualStudio.CodeAnalysis.Extensibility.FixCategories.NonBreaking;
-                                                problem.Id = this.GetNextId();
-                                                problem.MessageLevel = Microsoft.VisualStudio.CodeAnalysis.Extensibility.MessageLevel.Warning;
-                                                 base.Problems.Add(problem);
+                                                problem = new Problem(resolution, sourceContext) {
+                                                    Certainty = 90,
+                                                    FixCategory = FixCategories.NonBreaking,
+                                                    Id = this.GetNextId(),
+                                                    MessageLevel = MessageLevel.Warning
+                                                };
+                                                base.Problems.Add(problem);
                                             }
                                         }
                                     }
@@ -164,16 +158,13 @@ namespace SharePointCustomRules
                 foreach (Method method in this.methodsThatCallUnsupportedMethodsIndirectly.Values)
                 {
                     resolution = new Resolution("Method '{0}' calls one or both of the unsupported APIs '{1}' and '{2}' indirectly. For ULS logging, please use the TraceEvent sample on MSDN or Microsoft.SharePoint.Administration.SPDiagnosticsServiceBase.WriteTrace API in SharePoint 2010.", new string[] { this.GetOnlyTheMethodName(method.FullName), "Microsoft.Office.Server.Diagnostics.PortalLog.LogString", "Microsoft.Office.Server.Diagnostics.PortalLog.DebugLogString" });
-#if ORIGINAL
-                    problem = new Problem(resolution, method.SourceContext);
-#else
-                    problem = new Problem(resolution, method);
-#endif
-                    problem.Certainty = 90;
-                    problem.FixCategory = Microsoft.VisualStudio.CodeAnalysis.Extensibility.FixCategories.NonBreaking;
-                    problem.Id = this.GetNextId();
-                    problem.MessageLevel = Microsoft.VisualStudio.CodeAnalysis.Extensibility.MessageLevel.Warning;
-                     base.Problems.Add(problem);
+                    problem = new Problem(resolution, method.SourceContext) {
+                        Certainty = 90,
+                        FixCategory = FixCategories.NonBreaking,
+                        Id = this.GetNextId(),
+                        MessageLevel = MessageLevel.Warning
+                    };
+                    base.Problems.Add(problem);
                 }
             }
             return base.Problems;
@@ -245,31 +236,25 @@ namespace SharePointCustomRules
                         {
                             if (!fullyQualifiedResolutionStrings.Contains(resolution.ToString()))
                             {
-#if ORIGINAL
-                                problem = new Problem(resolution, current.SourceContext);
-#else
-                                problem = new Problem(resolution, current);
-#endif
-                                problem.Certainty = 90;
-                                problem.FixCategory = Microsoft.VisualStudio.CodeAnalysis.Extensibility.FixCategories.NonBreaking;
-                                problem.Id = this.GetNextId();
-                                problem.MessageLevel = Microsoft.VisualStudio.CodeAnalysis.Extensibility.MessageLevel.Warning;
-                                 base.Problems.Add(problem);
+                                problem = new Problem(resolution, current.SourceContext) {
+                                    Certainty = 90,
+                                    FixCategory = FixCategories.NonBreaking,
+                                    Id = this.GetNextId(),
+                                    MessageLevel = MessageLevel.Warning
+                                };
+                                base.Problems.Add(problem);
                                 fullyQualifiedResolutionStrings.Add(resolution.ToString());
                             }
                         }
                         else
                         {
-#if ORIGINAL
-                            problem = new Problem(resolution, current.SourceContext);
-#else
-                            problem = new Problem(resolution, current);
-#endif
-                            problem.Certainty = 90;
-                            problem.FixCategory = Microsoft.VisualStudio.CodeAnalysis.Extensibility.FixCategories.NonBreaking;
-                            problem.Id = this.GetNextId();
-                            problem.MessageLevel = Microsoft.VisualStudio.CodeAnalysis.Extensibility.MessageLevel.Warning;
-                             base.Problems.Add(problem);
+                            problem = new Problem(resolution, current.SourceContext) {
+                                Certainty = 90,
+                                FixCategory = FixCategories.NonBreaking,
+                                Id = this.GetNextId(),
+                                MessageLevel = MessageLevel.Warning
+                            };
+                            base.Problems.Add(problem);
                         }
                         flag = true;
                     }
@@ -425,3 +410,4 @@ namespace SharePointCustomRules
         }
     }
 }
+

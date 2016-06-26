@@ -2,7 +2,7 @@
 {
     using System;
 
-    internal class SPDeprecatedAPIStore
+    public class SPClaimsTypesToBeChecked
     {
         private string m_sAPIType;
         private string m_sMessage;

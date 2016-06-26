@@ -1,4 +1,4 @@
-namespace SharePointCustomRules
+﻿namespace SharePointCustomRules
 {
     using Microsoft.FxCop.Sdk;
     using System;
@@ -31,11 +31,7 @@ namespace SharePointCustomRules
                                 if (current.ToString().Contains("Microsoft.SharePoint.Administration.TraceSeverity") && method.Instructions[i - 1].Value.Equals(100))
                                 {
                                     resolution = base.GetResolution(new string[] { method.ToString() });
-#if ORIGINAL 
                                     base.Problems.Add(new Problem(resolution, Convert.ToString(num)));
-#else
-                                    base.Problems.Add(new Problem(resolution, current, Convert.ToString(num)));
-#endif
                                     num++;
                                     break;
                                 }
@@ -52,3 +48,4 @@ namespace SharePointCustomRules
         }
     }
 }
+

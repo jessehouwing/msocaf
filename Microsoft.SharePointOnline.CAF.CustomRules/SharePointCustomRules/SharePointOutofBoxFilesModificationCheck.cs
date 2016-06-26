@@ -1,4 +1,4 @@
-namespace SharePointCustomRules
+﻿namespace SharePointCustomRules
 {
     using Microsoft.FxCop.Sdk;
     using System;
@@ -6,14 +6,18 @@ namespace SharePointCustomRules
     using System.IO;
     using System.Linq;
     using System.Reflection;
+    using System.Xml.Linq;
 
     public class SharePointOutofBoxFilesModificationCheck : BaseIntrospectionRule
     {
+        private List<string> assembliesfrommanifest;
+        private static List<string> fullyQualifiedResolutionStrings = new List<string>();
         private List<string> m_ExistingListOOBFileNames;
         private int m_iStringIdForProblem;
 
         public SharePointOutofBoxFilesModificationCheck() : base("SharePointOutofBoxFilesModificationCheck", "SharePointCustomRules.CustomRules", typeof(SharePointOutofBoxFilesModificationCheck).Assembly)
         {
+            this.assembliesfrommanifest = new List<string>();
             this.m_ExistingListOOBFileNames = new List<string>();
             this.m_iStringIdForProblem = 0;
         }
@@ -26,19 +30,21 @@ namespace SharePointCustomRules
                 if (this.m_ExistingListOOBFileNames.Count.Equals(0))
                 {
                     StreamReader reader = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("SharePointCustomRules.SPOutOfBoxFileNames.txt"));
-                    string item = string.Empty;
                     while (!reader.EndOfStream)
                     {
-                        item = reader.ReadLine();
-                        this.m_ExistingListOOBFileNames.Add(item);
+                        this.m_ExistingListOOBFileNames.Add(reader.ReadLine().ToUpperInvariant());
                     }
                     reader.Close();
                 }
-                DirectoryInfo directoryInfo = new DirectoryInfo(module.Directory);
-                if (directoryInfo.Exists)
+                DirectoryInfo info = new DirectoryInfo(module.Directory);
+                if (info.Exists)
                 {
-                    this.ProcessDirectory(directoryInfo);
-                    this.SearchDirectory(directoryInfo);
+                    FileInfo[] files = info.GetFiles("manifest.xml");
+                    if (files.Count<FileInfo>() > 0)
+                    {
+                        this.ReadManifestFile(files[0]);
+                        this.searchFiles();
+                    }
                 }
             }
             catch (IOException exception)
@@ -72,12 +78,7 @@ namespace SharePointCustomRules
                         if (this.m_ExistingListOOBFileNames.Contains(info.Name))
                         {
                             resolution = base.GetResolution(new string[] { info.Name });
-#if ORIGINAL
                             base.Problems.Add(new Problem(resolution, Convert.ToString(this.m_iStringIdForProblem)));
-#else
-                            base.Problems.Add(new Problem(resolution, info.FullName, 0, Convert.ToString(this.m_iStringIdForProblem)));
-#endif
-
                             this.m_iStringIdForProblem++;
                         }
                     }
@@ -89,6 +90,13 @@ namespace SharePointCustomRules
             }
         }
 
+        private void ReadManifestFile(FileInfo fileInfo)
+        {
+            XDocument document = XDocument.Load(fileInfo.FullName);
+            XNamespace namespace2 = document.Root.Name.Namespace;
+            this.assembliesfrommanifest = (from doc in document.Descendants((XName) (namespace2 + "TemplateFile")) select (doc.Attribute("Location") != null) ? doc.Attribute("Location").Value : string.Empty).ToList<string>();
+        }
+
         private void SearchDirectory(DirectoryInfo directoryInfo)
         {
             foreach (DirectoryInfo info in directoryInfo.GetDirectories())
@@ -97,5 +105,24 @@ namespace SharePointCustomRules
                 this.SearchDirectory(info);
             }
         }
+
+        private void searchFiles()
+        {
+            foreach (string str in this.assembliesfrommanifest)
+            {
+                Resolution resolution = null;
+                if (this.m_ExistingListOOBFileNames.Contains(str.ToUpperInvariant()))
+                {
+                    resolution = base.GetResolution(new string[] { str });
+                    if (!fullyQualifiedResolutionStrings.Contains(resolution.ToString()))
+                    {
+                        base.Problems.Add(new Problem(resolution, Convert.ToString(this.m_iStringIdForProblem)));
+                        this.m_iStringIdForProblem++;
+                        fullyQualifiedResolutionStrings.Add(resolution.ToString());
+                    }
+                }
+            }
+        }
     }
 }
+

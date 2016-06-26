@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>local</ProjectType>
+    <ProjectVersion>7.10.377</ProjectVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8704BB72-092E-4987-BB19-22C2B7CACA46}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Visual Studio 2015</Configuration>
+    <AssemblyName>Microsoft.SharePointOnline.CAF.CustomRules</AssemblyName>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Visual Studio 2010|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Visual Studio 2010\</OutputPath>
@@ -9,6 +18,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Visual Studio 2012|AnyCPU'">
@@ -20,6 +30,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Visual Studio 2013|AnyCPU'">
@@ -31,7 +42,8 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <Prefer32Bit>false</Prefer32Bit>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Visual Studio 2015|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -42,7 +54,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Visual Studio 2015|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -53,23 +65,8 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Visual Studio 2015</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{9119355F-6CCD-4926-9311-71510E466304}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Microsoft.SharePoint.DisposeChecker</RootNamespace>
-    <AssemblyName>Microsoft.SharePoint.DisposeChecker</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <Prefer32Bit>false</Prefer32Bit>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Visual Studio 2010' ">
     <FxCopReferenceFolder>$(VS100COMNTOOLS)\..\..\Team Tools\Static Analysis Tools\FxCop\</FxCopReferenceFolder>
@@ -91,103 +88,56 @@
     <FxCopReferenceFolder>$(VS150COMNTOOLS)\..\..\Team Tools\Static Analysis Tools\FxCop\</FxCopReferenceFolder>
     <DefineConstants>VisualStudio15</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <OldToolsVersion>2.0</OldToolsVersion>
-    <ProjectGuid>{8704BB72-092E-4987-BB19-22C2B7CACA46}</ProjectGuid>
-    <TargetFrameworkProfile />
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Visual Studio 15|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup>
-    <OutputType>Library</OutputType>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>..\default.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Reference Include="FxCopCommon">
-      <HintPath>$(FxCopReferenceFolder)\FxCopCommon.dll</HintPath>
-    </Reference>
-    <Reference Include="FxCopSdk">
-      <HintPath>$(FxCopReferenceFolder)\FxCopSdk.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Cci">
-      <HintPath>$(FxCopReferenceFolder)\Microsoft.Cci.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.CodeAnalysis">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(FxCopReferenceFolder)\Microsoft.VisualStudio.CodeAnalysis.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.CodeAnalysis.Common">
-      <HintPath>$(FxCopReferenceFolder)\Microsoft.VisualStudio.CodeAnalysis.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.CodeAnalysis.Interop">
-      <HintPath>$(FxCopReferenceFolder)\Microsoft.VisualStudio.CodeAnalysis.Interop.dll</HintPath>
-    </Reference>
-    <Reference Include="mscorlib" />
+    <Reference Include="FxCopSdk" />
+    <Reference Include="Microsoft.Cci" />
+    <Reference Include="System.Xml" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Workflow.Activities" />
-    <Reference Include="System.Workflow.ComponentModel" />
-    <Reference Include="System.Workflow.Runtime" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.VisualStudio.CodeAnalysis" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Global.cs" />
-    <Compile Include="_Module_.cs" />
-    <Compile Include="SharePointCustomRules\*.cs" />
+    <Compile Include="SharePointCustomRules\GlobalConstant.cs" />
+    <Compile Include="SharePointCustomRules\Logging.cs" />
+    <Compile Include="SharePointCustomRules\CustomRulesResource.cs" />
+    <Compile Include="SharePointCustomRules\SPClaimsTypesToBeChecked.cs" />
+    <Compile Include="SharePointCustomRules\SPDeprecatedAPIStore.cs" />
+    <Compile Include="SharePointCustomRules\SPLoopDetector.cs" />
+    <Compile Include="SharePointCustomRules\SPQueryObject.cs" />
+    <Compile Include="SharePointCustomRules\SharePointCustomItemCheck.cs" />
+    <Compile Include="SharePointCustomRules\SharePointCustomRowLimitExistCheck.cs" />
+    <Compile Include="SharePointCustomRules\SharePointCustomRowLimitValueCheck.cs" />
+    <Compile Include="SharePointCustomRules\SharePointItemsCollectionCheck.cs" />
+    <Compile Include="SharePointCustomRules\SharePointListItemUpdateCheck.cs" />
+    <Compile Include="SharePointCustomRules\SharePointTimerjobImplementationCheck.cs" />
+    <Compile Include="SharePointCustomRules\SharePointWebconfigEditCheck.cs" />
+    <Compile Include="SharePointCustomRules\SharePointDeprecatedAPICheck.cs" />
+    <Compile Include="SharePointCustomRules\SharePointVerboseLoggingCheck.cs" />
+    <Compile Include="SharePointCustomRules\SharePointMonitorScopeCheck.cs" />
+    <Compile Include="SharePointCustomRules\SharePointMonitorScopeWarningCheck.cs" />
+    <Compile Include="SharePointCustomRules\SharePointOutofBoxFilesModificationCheck.cs" />
+    <Compile Include="SharePointCustomRules\SharePointInlineCodeSupportCheck.cs" />
+    <Compile Include="SharePointCustomRules\SPDiagnosticsService.cs" />
+    <Compile Include="SharePointCustomRules\SharePointMonitorScopeWebpartCheck.cs" />
+    <Compile Include="SharePointCustomRules\ULSLoggingCustomRule.cs" />
+    <Compile Include="SharePointCustomRules\SharePointBlobCacheCheck.cs" />
+    <Compile Include="SharePointCustomRules\SharePointRunWithElevatedPrivilegesCheck.cs" />
+    <Compile Include="SharePointCustomRules\SharePointFeatureReceiverCheck.cs" />
+    <Compile Include="SharePointCustomRules\SharePointClaimsCheck.cs" />
+    <Compile Include="SharePointCustomRules\SharePointHardCodedControlTemplatesPath.cs" />
+    <Compile Include="SharePointCustomRules\SharePointHardCodedlayoutsFolderPath.cs" />
+    <Compile Include="SharePointCustomRules\SharePointGetGenericSetupPath.cs" />
+    <Compile Include="SharePointCustomRules\SharePointXMLDatasourceTransformCheck.cs" />
+    <Compile Include="SharePointCustomRules\SharePointSeachSQLSyntaxCheck.cs" />
+    <EmbeddedResource Include="SharePointCustomRules.CustomRulesResource.resources" />
+    <EmbeddedResource Include="SharePointCustomRules.CustomRules.xml" />
+    <EmbeddedResource Include="SharePointCustomRules.SPOutOfBoxFileNames.txt" />
+    <EmbeddedResource Include="SharePointCustomRules.SPS2010Deprecated.txt" />
+    <EmbeddedResource Include="SharePointCustomRules.SPS2010ClaimsTypes.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include=".\SharePointCustomRules.CustomRules.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include=".\SharePointCustomRules.CustomRulesResource.resources" />
-    <EmbeddedResource Include=".\SharePointCustomRules.SPOutOfBoxFileNames.txt" />
-    <EmbeddedResource Include=".\SharePointCustomRules.SPS2010Deprecated.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Debug.cmd">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\default.snk">
-      <Link>default.snk</Link>
-    </None>
-  </ItemGroup>
-  <Import Condition="" Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

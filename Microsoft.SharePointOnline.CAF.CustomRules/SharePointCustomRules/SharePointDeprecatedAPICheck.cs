@@ -1,4 +1,4 @@
-namespace SharePointCustomRules
+﻿namespace SharePointCustomRules
 {
     using Microsoft.FxCop.Sdk;
     using System;
@@ -45,11 +45,7 @@ namespace SharePointCustomRules
                                 if (fullName.Equals(str3) || fullName.Contains("Microsoft.SharePoint.Portal"))
                                 {
                                     resolution = base.GetResolution(new string[] { method.ToString(), fullName, store.Message });
-#if ORIGINAL
                                     base.Problems.Add(new Problem(resolution, Convert.ToString(num)));
-#else
-                                    base.Problems.Add(new Problem(resolution, (Local)current.Value, Convert.ToString(num)));
-#endif
                                     num++;
                                     fullName = string.Empty;
                                     str3 = string.Empty;
@@ -63,11 +59,7 @@ namespace SharePointCustomRules
                                 if ((str.Equals(store.Namespace) && fullName.Equals(store.APIType)) || fullName.Contains("Microsoft.SharePoint.Portal"))
                                 {
                                     resolution = base.GetResolution(new string[] { method.ToString(), fullName, store.Message });
-#if ORIGINAL
                                     base.Problems.Add(new Problem(resolution, Convert.ToString(num)));
-#else
-                                    base.Problems.Add(new Problem(resolution, current, Convert.ToString(num)));
-#endif
                                     num++;
                                     str = string.Empty;
                                     fullName = string.Empty;
@@ -128,3 +120,4 @@ namespace SharePointCustomRules
         }
     }
 }
+

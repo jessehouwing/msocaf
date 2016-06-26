@@ -1,4 +1,4 @@
-namespace SharePointCustomRules
+﻿namespace SharePointCustomRules
 {
     using Microsoft.FxCop.Sdk;
     using System;
@@ -54,11 +54,7 @@ namespace SharePointCustomRules
                         if (flag && source[i].Value.ToString().Contains("System.Configuration.Configuration.Save"))
                         {
                             resolution = base.GetResolution(new string[] { method.ToString() });
-#if ORIGINAL
                             base.Problems.Add(new Problem(resolution, Convert.ToString(iStringIdForProblem)));
-#else
-                            base.Problems.Add(new Problem(resolution, source[i], Convert.ToString(iStringIdForProblem)));
-#endif
                             iStringIdForProblem++;
                         }
                     }
@@ -86,11 +82,7 @@ namespace SharePointCustomRules
                     if ((flag && (source[i].Value != null)) && source[i].Value.ToString().Contains("System.IO.TextWriter.WriteLine"))
                     {
                         resolution = base.GetResolution(new string[] { method.ToString() });
-#if ORIGINAL
                         base.Problems.Add(new Problem(resolution, Convert.ToString(iStringIdForProblem)));
-#else
-                        base.Problems.Add(new Problem(resolution, source[i], Convert.ToString(iStringIdForProblem)));
-#endif
                         iStringIdForProblem++;
                         flag = false;
                     }
@@ -113,11 +105,7 @@ namespace SharePointCustomRules
                     if ((((i > 0) && (source[i].Value != null)) && (source[i - 1].Value != null)) && ((source[i].Value.ToString().Contains("System.Xml.XmlDocument.Save") && source[i - 1].Value.ToString().Equals("web.config")) || source[i - 1].Value.ToString().Equals(this.m_sPossibleWebConfigName)))
                     {
                         resolution = base.GetResolution(new string[] { method.ToString() });
-#if ORIGINAL
                         base.Problems.Add(new Problem(resolution, Convert.ToString(iStringIdForProblem)));
-#else
-                        base.Problems.Add(new Problem(resolution, source[i], Convert.ToString(iStringIdForProblem)));
-#endif
                         iStringIdForProblem++;
                     }
                 }
@@ -158,11 +146,7 @@ namespace SharePointCustomRules
                     if ((flag && (source[i].Value != null)) && source[i].Value.ToString().Contains("System.Xml.XmlWriter.WriteElementString"))
                     {
                         resolution = base.GetResolution(new string[] { method.ToString() });
-#if ORIGINAL
                         base.Problems.Add(new Problem(resolution, Convert.ToString(iStringIdForProblem)));
-#else
-                        base.Problems.Add(new Problem(resolution, source[i], Convert.ToString(iStringIdForProblem)));
-#endif
                         iStringIdForProblem++;
                         flag = false;
                     }
@@ -175,3 +159,4 @@ namespace SharePointCustomRules
         }
     }
 }
+

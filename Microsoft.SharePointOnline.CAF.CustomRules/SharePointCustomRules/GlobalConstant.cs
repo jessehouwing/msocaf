@@ -1,4 +1,4 @@
-namespace SharePointCustomRules
+﻿namespace SharePointCustomRules
 {
     using System;
 
@@ -24,6 +24,11 @@ namespace SharePointCustomRules
         public const string SplitOnMessage = "Message";
         public const string SplitOnType = "Type";
         public const string XMLConfigValues = "ConfigValues.xml";
+
+        public static class CustomClaimsCheckConstans
+        {
+            public const string ProblemStatementForPropertyUsage = "This rule is applicable only to SharePoint 2010 customizations. {0}";
+        }
 
         public static class DeprecatedAPIConstants
         {
@@ -53,8 +58,10 @@ namespace SharePointCustomRules
             public const string CustomItemCheck = "SharePointCustomItemCheck:Check() - ";
             public const string DeprecatedAPICheck = "SharePointDeprecatedAPICheck:Check() - ";
             public const string DeprecatedAPICheckFillSPDeprecatedAPIStore = "SharePointDeprecatedAPICheck:FillSPDeprecatedAPIStore() - ";
+            public const string ErrorOccured = "Error occured in function : ";
             public const string ForwardAndFillInstructionsTillFirstBrTrue = "ForwardAndFillInstructionsTillFirstBrTrue() - ";
             public const string ForwardAndFillInstructionsTillFirstJump = "ForwardAndFillInstructionsTillFirstJump() - ";
+            public const string HardCodedControlTemplateCheck = "SharePointHardCodedControlTemplatesPath:Check() - ";
             public const string InlineCodeSupportCheckCheckIfInlineCodeExists = "SharePointInlineCodeSupportCheck:CheckIfInlineCodeExists() - ";
             public const string InlineCodeSupportCheckCheckIfPageParserExclusionExists = "SharePointInlineCodeSupportCheck:CheckIfPageParserExclusionExists() - ";
             public const string InlineCodeSupportCheckProcessDirectory = "SharePointInlineCodeSupportCheck:ProcessDirectory() - ";
@@ -120,6 +127,7 @@ namespace SharePointCustomRules
         public static class SharePointBlobCacheCheck
         {
             public const string InstructionForBlobCacheContainsBlobCache = "BlobCache";
+            public const string InstructionForBlobCacheNewSPWebAdmin = "Microsoft.SharePoint.Administration.SPWebConfigModification.set_Path";
             public const string InstructionForBlobCacheNewSPWebConfigModification = "Microsoft.SharePoint.Administration.SPWebConfigModification(";
             public const string OpCodeForBlobCacheLoadString = "Ldstr";
         }
@@ -140,6 +148,24 @@ namespace SharePointCustomRules
             public const string sp2010LoggingMethodName = "Microsoft.SharePoint.Administration.SPDiagnosticsServiceBase.WriteTrace";
             public const string SPFeatureRecieverMethod = "SPFeatureReceiverMethod";
             public const string symbolsNotFound = "'[symbols not found to locate the line number]'";
+        }
+
+        public static class SharePointGetGenericSetupPath
+        {
+            public const string InstructionForGenericSetupPathValue = "Microsoft.SharePoint.Utilities.SPUtility.GetGenericSetupPath";
+            public const string OpCodeForGenericSetupPath = "Call";
+        }
+
+        public static class SharePointHardCodedControlTemplatesPath
+        {
+            public const string InstructionForControlTemplateValue = "_CONTROLTEMPLATES";
+            public const string OpCodeForControlTemplate = "Ldstr";
+        }
+
+        public static class SharePointHardCodedlayoutsFolderPath
+        {
+            public const string InstructionForLayoutValue = "_layouts/";
+            public const string OpCodeForLayout = "Ldstr";
         }
 
         public static class SharePointMonitorScopeWebpartCheck
@@ -180,6 +206,21 @@ namespace SharePointCustomRules
             public const string RunWithElevatedPrivilegesForServiceCheck = "ServiceOperationCheck";
         }
 
+        public static class SharePointSeachSQLSyntaxCheck
+        {
+            public const string InstructionValueForSearchService = "Microsoft.Office.Server.Search.Query.QueryService.Query";
+            public const string InstructionValueForSearchServiceSoap = "QueryServiceSoapClient.Query";
+            public const string InstructionValueForSQLSyntax = "Microsoft.Office.Server.Search.Query.FullTextSqlQuery(";
+            public const string OpCodeForSearchService = "Callvirt";
+            public const string OpCodeForSQLSyntax = "Newobj";
+        }
+
+        public static class SharePointXMLDatasourceTransformCheck
+        {
+            public const string InstructionValueForTransformCheck = "System.Web.UI.WebControls.XmlDataSource.set_Transform";
+            public const string OpCodeForTransformCheck = "Callvirt";
+        }
+
         public static class SPDiagnosticsImplementationConstants
         {
             public const string BaseClassNameForEventReceiver1 = "Microsoft.SharePoint.SPWebEventReceiver";
@@ -193,6 +234,7 @@ namespace SharePointCustomRules
             public const string InstructionForADONET1 = "System.Data.Common.DbConnection.Open";
             public const string InstructionForADONET2 = "System.Data.SqlClient";
             public const string InstructionForCalltoSPDiagnosticsServiceBaseWriteTrace = "Microsoft.SharePoint.Administration.SPDiagnosticsServiceBase.WriteTrace";
+            public const string InstructionForSPDiagnosticsServiceget_Areas = "Microsoft.SharePoint.Administration.SPDiagnosticsServiceBase.get_Areas";
             public const string InstructionForSPDiagnosticsServiceget_Local = "Microsoft.SharePoint.Administration.SPDiagnosticsService.get_Local";
             public const string InstructionForWebService = "System.Web.Services.Protocols.SoapHttpClientProtocol.Invoke";
             public const string MethodNameExecute = "Execute";
@@ -206,6 +248,7 @@ namespace SharePointCustomRules
         {
             public const string InstructionForListItemUpdate = "SPItem.Update";
             public const string InstructionForSPListItem = "SPList.get_Items";
+            public const string InstructionForSPListItem2 = "SPList.GetItems";
             public const string InstructionForSPListItemById = "SPList.GetItemById";
             public const string InstructionForSPListItemCount = "SPList.get_Count";
         }
@@ -268,3 +311,4 @@ namespace SharePointCustomRules
         }
     }
 }
+

@@ -1,7 +1,6 @@
-namespace SharePointCustomRules
+﻿namespace SharePointCustomRules
 {
     using System;
-using Microsoft.FxCop.Sdk;
 
     public class SPQueryObject
     {
@@ -14,15 +13,6 @@ using Microsoft.FxCop.Sdk;
         private string sObjectName = string.Empty;
         private string sObjectType = string.Empty;
         private string sObjectValue = string.Empty;
-
-#if ORIGINAL
-#else
-        public Node ObjectNode
-        {
-            get;
-            set;
-        }
-#endif
 
         public string ClassName
         {
@@ -133,3 +123,4 @@ using Microsoft.FxCop.Sdk;
         }
     }
 }
+

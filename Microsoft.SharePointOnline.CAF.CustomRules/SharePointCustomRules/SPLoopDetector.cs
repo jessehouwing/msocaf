@@ -1,4 +1,4 @@
-namespace SharePointCustomRules
+﻿namespace SharePointCustomRules
 {
     using Microsoft.FxCop.Sdk;
     using System;
@@ -165,3 +165,4 @@ namespace SharePointCustomRules
         }
     }
 }
+

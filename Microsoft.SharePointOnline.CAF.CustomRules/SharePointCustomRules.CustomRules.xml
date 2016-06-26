@@ -199,4 +199,64 @@
     <FixCategories>Breaking</FixCategories>
     <Owner></Owner>
   </Rule>
+    <Rule TypeName="SharePointClaimsCheck" Category="Custom" CheckId="Claims001">
+    <Name>Windows Claims Check</Name>
+    <Description>test</Description>
+    <Url>Please refer to custom rules section in help file for details</Url>
+    <Resolution>Method {0} is using {1}.</Resolution>
+    <MessageLevel Certainty="100">Error</MessageLevel>
+    <Email></Email>
+    <FixCategories>Breaking</FixCategories>
+    <Owner></Owner>
+  </Rule>
+    <Rule TypeName="SharePointHardCodedlayoutsFolderPath" Category="O15UpgradeRules" CheckId="RID-169">
+      <Name>Hard Coded _layouts folder path</Name>
+      <Description>_layouts folder in SharePoint 2013 has been changed and any code that has direct dependency on this path will fail when Site Collection is upgraded.</Description>
+      <Url>Please refer to custom rules section in help file for details</Url>
+      <Resolution>Use SPUtility.ContextLayoutsFolder property to retrieve the version layouts folder for the site in context.</Resolution>
+      <MessageLevel Certainty="90">Error</MessageLevel>
+      <Email></Email>
+      <FixCategories>Breaking</FixCategories>
+      <Owner></Owner>
+    </Rule>
+    <Rule TypeName="SharePointHardCodedControlTemplatesPath" Category="O15UpgradeRules" CheckId="RID-170">
+      <Name>Hard Coded _Controltemplates path</Name>
+      <Description>Using hard coded _controltemplates will fail as it is applicable only for a 2010 controls. It is also recommended not to hard code _controltemplates/15 either as it will impact future upgrades.</Description>
+      <Url>Please refer to custom rules section in help file for details</Url>
+      <Resolution>Use SPUtility.ContextControlTemplatesFolder property to retrieve the version layouts folder for the site in context.</Resolution>
+      <MessageLevel Certainty="90">Error</MessageLevel>
+      <Email></Email>
+      <FixCategories>Breaking</FixCategories>
+      <Owner></Owner>
+    </Rule>
+    <Rule TypeName="SharePointGetGenericSetupPath" Category="O15UpgradeRules" CheckId="RID-171">
+      <Name>SPUtility.GetGenericSetupPath deprecation check</Name>
+      <Description>The method SPUtility.GetGenericSetupPath() that retrieves the full local path for the specified subdirectory has been deprecated in SharePoint 2013.</Description>
+      <Url>Please refer to custom rules section in help file for details</Url>
+      <Resolution>Two new methods have been introduced in SharePoint 2013, should be leveraged GetCurrentGenericSetupPath() and GetVersionedGenericSetupPath().</Resolution>
+      <MessageLevel Certainty="90">Error</MessageLevel>
+      <Email></Email>
+      <FixCategories>Breaking</FixCategories>
+      <Owner></Owner>
+    </Rule>
+    <Rule TypeName="SharePointXMLDatasourceTransformCheck" Category="O15UpgradeRules" CheckId="RID-172">
+      <Name>XMLDataSource Transform Check</Name>
+      <Description>The property XMLDataSource.TransformFile or XMLDataSource.Transform  which set to the xslt will create the problem when bind the XMLDataSource with the controls in SharePoint 2013.</Description>
+      <Url>Please refer to custom rules section in help file for details</Url>
+      <Resolution>Use the XSLT into an XmlDocument and then load it into an XslCompiledTransform.</Resolution>
+      <MessageLevel Certainty="90">Error</MessageLevel>
+      <Email></Email>
+      <FixCategories>Breaking</FixCategories>
+      <Owner></Owner>
+    </Rule>
+  <Rule TypeName="SharePointSeachSQLSyntaxCheck" Category="O15UpgradeRules" CheckId="RID-173">
+    <Name>SharePoint SQL Search Syntax Check</Name>
+    <Description>Search in SharePoint 2013 supports FAST Query Language (FQL) syntax and Keyword Query Language (KQL) syntax for custom search solutions. You cannot use SQL syntax in custom search solutions</Description>
+    <Url>Please refer to custom rules section in help file for details</Url>
+    <Resolution>You must rewrite the search query in either FAST Query Language (FQL) syntax or Keyword Query Language (KQL) syntax. You cannot use SQL syntax in custom search solutions</Resolution>
+    <MessageLevel Certainty="90">Error</MessageLevel>
+    <Email></Email>
+    <FixCategories>Breaking</FixCategories>
+    <Owner></Owner>
+  </Rule>
 </Rules>

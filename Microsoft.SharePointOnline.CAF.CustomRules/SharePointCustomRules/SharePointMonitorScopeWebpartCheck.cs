@@ -1,6 +1,7 @@
-namespace SharePointCustomRules
+﻿namespace SharePointCustomRules
 {
     using Microsoft.FxCop.Sdk;
+    using Microsoft.VisualStudio.CodeAnalysis.Extensibility;
     using System;
     using System.Collections.Generic;
 
@@ -81,15 +82,12 @@ namespace SharePointCustomRules
                         if (current.OpCode.Equals(OpCode.Call) || current.OpCode.Equals(OpCode.Callvirt))
                         {
                             resolution = new Resolution("SPMonitoredScope is absent in {0} Webpart", new string[] { method.FullName });
-#if ORIGINAL
-                            problem = new Problem(resolution, current.SourceContext, Convert.ToString(this.iStringIdForProblem));
-#else
-                            problem = new Problem(resolution, current, Convert.ToString(this.iStringIdForProblem));
-#endif
-                            problem.Certainty = 90;
-                            problem.FixCategory = Microsoft.VisualStudio.CodeAnalysis.Extensibility.FixCategories.NonBreaking;
-                            problem.MessageLevel = Microsoft.VisualStudio.CodeAnalysis.Extensibility.MessageLevel.Warning;
-                             base.Problems.Add(problem);
+                            problem = new Problem(resolution, current.SourceContext, Convert.ToString(this.iStringIdForProblem)) {
+                                Certainty = 90,
+                                FixCategory = FixCategories.NonBreaking,
+                                MessageLevel = MessageLevel.Warning
+                            };
+                            base.Problems.Add(problem);
                             this.iStringIdForProblem++;
                             return;
                         }
@@ -101,15 +99,12 @@ namespace SharePointCustomRules
                                 continue;
                             }
                             resolution = new Resolution("SPMonitoredScope is absent in {0} Webpart", new string[] { method.FullName });
-#if ORIGINAL
-                            problem = new Problem(resolution, current.SourceContext, Convert.ToString(this.iStringIdForProblem));
-#else
-                            problem = new Problem(resolution, current, Convert.ToString(this.iStringIdForProblem));
-#endif
-                            problem.Certainty = 90;
-                            problem.FixCategory = Microsoft.VisualStudio.CodeAnalysis.Extensibility.FixCategories.NonBreaking;
-                            problem.MessageLevel = Microsoft.VisualStudio.CodeAnalysis.Extensibility.MessageLevel.Warning;
-                             base.Problems.Add(problem);
+                            problem = new Problem(resolution, current.SourceContext, Convert.ToString(this.iStringIdForProblem)) {
+                                Certainty = 90,
+                                FixCategory = FixCategories.NonBreaking,
+                                MessageLevel = MessageLevel.Warning
+                            };
+                            base.Problems.Add(problem);
                             this.iStringIdForProblem++;
                             return;
                         }
@@ -131,15 +126,12 @@ namespace SharePointCustomRules
                     if ((flag3 && (current.OpCode.Equals(OpCode.Call) || current.OpCode.Equals(OpCode.Callvirt))) && !current.Value.ToString().Contains("System.IDisposable.Dispose"))
                     {
                         resolution = new Resolution("SPMonitoredScope is absent in {0} Webpart", new string[] { method.FullName });
-#if ORIGINAL
-                        problem = new Problem(resolution, current.SourceContext, Convert.ToString(this.iStringIdForProblem));
-#else
-                        problem = new Problem(resolution, current, Convert.ToString(this.iStringIdForProblem));
-#endif
-                        problem.Certainty = 90;
-                        problem.FixCategory = Microsoft.VisualStudio.CodeAnalysis.Extensibility.FixCategories.NonBreaking;
-                        problem.MessageLevel = Microsoft.VisualStudio.CodeAnalysis.Extensibility.MessageLevel.Warning;
-                         base.Problems.Add(problem);
+                        problem = new Problem(resolution, current.SourceContext, Convert.ToString(this.iStringIdForProblem)) {
+                            Certainty = 90,
+                            FixCategory = FixCategories.NonBreaking,
+                            MessageLevel = MessageLevel.Warning
+                        };
+                        base.Problems.Add(problem);
                         this.iStringIdForProblem++;
                         return;
                     }
@@ -171,15 +163,12 @@ namespace SharePointCustomRules
                         if (method.Instructions[num2].OpCode.Equals(OpCode.Callvirt) || method.Instructions[num2].OpCode.Equals(OpCode.Call))
                         {
                             resolution = new Resolution("SPMonitoredScope is absent in {0} Webpart", new string[] { method.FullName });
-#if ORIGINAL
-                            problem = new Problem(resolution, method.Instructions[i].SourceContext, Convert.ToString(this.iStringIdForProblem));
-#else
-                            problem = new Problem(resolution, method.Instructions[i], Convert.ToString(this.iStringIdForProblem));
-#endif
-                            problem.Certainty = 90;
-                            problem.FixCategory = Microsoft.VisualStudio.CodeAnalysis.Extensibility.FixCategories.NonBreaking;
-                            problem.MessageLevel = Microsoft.VisualStudio.CodeAnalysis.Extensibility.MessageLevel.Warning;
-                             base.Problems.Add(problem);
+                            problem = new Problem(resolution, method.Instructions[i].SourceContext, Convert.ToString(this.iStringIdForProblem)) {
+                                Certainty = 90,
+                                FixCategory = FixCategories.NonBreaking,
+                                MessageLevel = MessageLevel.Warning
+                            };
+                            base.Problems.Add(problem);
                             this.iStringIdForProblem++;
                             break;
                         }
@@ -198,16 +187,12 @@ namespace SharePointCustomRules
                         if (num2 == 1)
                         {
                             resolution = new Resolution("SPMonitoredScope is absent in {0} Webpart", new string[] { method.FullName });
-                            problem = new Problem(resolution, method.Instructions[i], Convert.ToString(this.iStringIdForProblem));
-#if ORIGINAL
-                            problem = new Problem(resolution, method.Instructions[i].SourceContext, Convert.ToString(this.iStringIdForProblem));
-#else
-                            problem = new Problem(resolution, method.Instructions[i], Convert.ToString(this.iStringIdForProblem));
-#endif
-                            problem.Certainty = 90;
-                            problem.FixCategory = Microsoft.VisualStudio.CodeAnalysis.Extensibility.FixCategories.NonBreaking;
-                            problem.MessageLevel = Microsoft.VisualStudio.CodeAnalysis.Extensibility.MessageLevel.Warning;
-                             base.Problems.Add(problem);
+                            problem = new Problem(resolution, method.Instructions[i].SourceContext, Convert.ToString(this.iStringIdForProblem)) {
+                                Certainty = 90,
+                                FixCategory = FixCategories.NonBreaking,
+                                MessageLevel = MessageLevel.Warning
+                            };
+                            base.Problems.Add(problem);
                             this.iStringIdForProblem++;
                             break;
                         }
@@ -224,30 +209,24 @@ namespace SharePointCustomRules
                             if (method.Instructions[j].OpCode.Equals(OpCode.Call) || method.Instructions[j].OpCode.Equals(OpCode.Callvirt))
                             {
                                 resolution = new Resolution("SPMonitoredScope is absent in {0} Webpart", new string[] { method.FullName });
-#if ORIGINAL
-                                problem = new Problem(resolution, method.Instructions[i].SourceContext, Convert.ToString(this.iStringIdForProblem));
-#else
-                                problem = new Problem(resolution, method.Instructions[i], Convert.ToString(this.iStringIdForProblem));
-#endif
-                                problem.Certainty = 90;
-                                problem.FixCategory = Microsoft.VisualStudio.CodeAnalysis.Extensibility.FixCategories.NonBreaking;
-                                problem.MessageLevel = Microsoft.VisualStudio.CodeAnalysis.Extensibility.MessageLevel.Warning;
-                                 base.Problems.Add(problem);
+                                problem = new Problem(resolution, method.Instructions[i].SourceContext, Convert.ToString(this.iStringIdForProblem)) {
+                                    Certainty = 90,
+                                    FixCategory = FixCategories.NonBreaking,
+                                    MessageLevel = MessageLevel.Warning
+                                };
+                                base.Problems.Add(problem);
                                 this.iStringIdForProblem++;
                                 break;
                             }
                             if (j == (method.Instructions.Count - 1))
                             {
                                 resolution = new Resolution("SPMonitoredScope is absent in {0} Webpart", new string[] { method.FullName });
-#if ORIGINAL
-                                problem = new Problem(resolution, method.Instructions[i].SourceContext, Convert.ToString(this.iStringIdForProblem));
-#else
-                                problem = new Problem(resolution, method.Instructions[i], Convert.ToString(this.iStringIdForProblem));
-#endif
-                                problem.Certainty = 90;
-                                problem.FixCategory = Microsoft.VisualStudio.CodeAnalysis.Extensibility.FixCategories.NonBreaking;
-                                problem.MessageLevel = Microsoft.VisualStudio.CodeAnalysis.Extensibility.MessageLevel.Warning;
-                                 base.Problems.Add(problem);
+                                problem = new Problem(resolution, method.Instructions[i].SourceContext, Convert.ToString(this.iStringIdForProblem)) {
+                                    Certainty = 90,
+                                    FixCategory = FixCategories.NonBreaking,
+                                    MessageLevel = MessageLevel.Warning
+                                };
+                                base.Problems.Add(problem);
                                 this.iStringIdForProblem++;
                                 break;
                             }
@@ -262,3 +241,4 @@ namespace SharePointCustomRules
         }
     }
 }
+

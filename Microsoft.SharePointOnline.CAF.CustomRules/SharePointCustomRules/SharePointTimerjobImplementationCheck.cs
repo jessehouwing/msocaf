@@ -1,4 +1,4 @@
-namespace SharePointCustomRules
+﻿namespace SharePointCustomRules
 {
     using Microsoft.FxCop.Sdk;
     using System;
@@ -34,42 +34,26 @@ namespace SharePointCustomRules
                             if (!this.m_bIsJobExistsDefinitionPresent)
                             {
                                 namedResolution = this.GetNamedResolution("JobExistsCheck", new string[] { module.Name });
-#if ORIGINAL
                                 base.Problems.Add(new Problem(namedResolution, Convert.ToString(num)));
-#else
-                                base.Problems.Add(new Problem(namedResolution, current, Convert.ToString(num)));
-#endif
                                 num++;
                             }
                             if (!this.m_bIsJobDeleteDefinitionPresent)
                             {
                                 namedResolution = this.GetNamedResolution("JobDeleteCheck", new string[] { module.Name });
-#if ORIGINAL
                                 base.Problems.Add(new Problem(namedResolution, Convert.ToString(num)));
-#else
-                                base.Problems.Add(new Problem(namedResolution, current, Convert.ToString(num)));
-#endif
                                 num++;
                             }
                             if (!this.m_bIsMinuteScheduleUsed)
                             {
                                 namedResolution = this.GetNamedResolution("JobMinuteScheduleCheck", new string[] { module.Name });
-#if ORIGINAL
                                 base.Problems.Add(new Problem(namedResolution, Convert.ToString(num)));
-#else
-                                base.Problems.Add(new Problem(namedResolution, current, Convert.ToString(num)));
-#endif
                                 num++;
                             }
                         }
                         else
                         {
                             namedResolution = this.GetNamedResolution("JobFeatureReceiverCheck", new string[] { module.Name });
-#if ORIGINAL
                             base.Problems.Add(new Problem(namedResolution, Convert.ToString(num)));
-#else
-                            base.Problems.Add(new Problem(namedResolution, current, Convert.ToString(num)));
-#endif
                             num++;
                         }
                     }
@@ -164,7 +148,7 @@ namespace SharePointCustomRules
                             }
                             if (this.m_bIsMinuteScheduleUsed && this.m_bIsJobExistsDefinitionPresent)
                             {
-                                goto Label_022E;
+                                goto Label_0233;
                             }
                         }
                     }
@@ -184,7 +168,7 @@ namespace SharePointCustomRules
                             if (num == 2)
                             {
                                 this.m_bIsJobDeleteDefinitionPresent = true;
-                                goto Label_022E;
+                                goto Label_0233;
                             }
                         }
                     }
@@ -194,8 +178,9 @@ namespace SharePointCustomRules
             {
                 Logging.UpdateLog(CustomRulesResource.ErrorOccured + "SharePointTimerjobImplementationCheck:VisitMethod() - " + exception.Message);
             }
-        Label_022E:
+        Label_0233:
             base.VisitMethod(method);
         }
     }
 }
+

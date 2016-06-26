@@ -1,4 +1,4 @@
-namespace SharePointCustomRules
+﻿namespace SharePointCustomRules
 {
     using Microsoft.FxCop.Sdk;
     using System;
@@ -62,11 +62,7 @@ namespace SharePointCustomRules
                     }
                     if (resolution != null)
                     {
-#if ORIGINAL
                         base.Problems.Add(new Problem(resolution, Convert.ToString(num)));
-#else
-                        base.Problems.Add(new Problem(resolution, member, Convert.ToString(num)));
-#endif
                         num++;
                     }
                 }
@@ -79,3 +75,4 @@ namespace SharePointCustomRules
         }
     }
 }
+

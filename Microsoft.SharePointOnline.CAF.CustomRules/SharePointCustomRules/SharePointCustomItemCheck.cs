@@ -1,4 +1,4 @@
-namespace SharePointCustomRules
+﻿namespace SharePointCustomRules
 {
     using Microsoft.FxCop.Sdk;
     using System;
@@ -24,11 +24,7 @@ namespace SharePointCustomRules
                         if ((null != instruction.Value) && instruction.Value.ToString().Contains("SPList.get_Items"))
                         {
                             Resolution resolution = base.GetResolution(new string[] { method.ToString() });
-#if (ORIGINAL)
                             base.Problems.Add(new Problem(resolution));
-#else
-                            base.Problems.Add(new Problem(resolution, instruction));
-#endif
                         }
                     }
                 }
@@ -48,3 +44,4 @@ namespace SharePointCustomRules
         }
     }
 }
+

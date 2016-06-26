@@ -1,4 +1,4 @@
-namespace SharePointCustomRules
+﻿namespace SharePointCustomRules
 {
     using System;
     using System.IO;
@@ -59,3 +59,4 @@ namespace SharePointCustomRules
         }
     }
 }
+

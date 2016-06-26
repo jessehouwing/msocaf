@@ -1,0 +1,14 @@
+Namespace: Microsoft.SharePoint, Type: SPUser.LoginName, Message: Usage of Microsoft.SharePoint.SPUser.LoginName might break in Claims
+Namespace: Microsoft.SharePoint, Type: SPUserInfo.LoginName, Message: Usage of Microsoft.SharePoint.SPUserInfo.LoginName might break in Claims
+Namespace: Microsoft.SharePoint.Utilities, Type: SPPrincipalInfo.LoginName, Message: Usage of Microsoft.SharePoint.Utilities.SPPrincipalInfo.LoginName might break in Claims
+Namespace: Microsoft.SharePoint.Utilities.SPUtility, Type: GetPrincipalsInGroup, Message: Usage of Microsoft.SharePoint.Utilities.SPUtility.GetPrincipalsInGroup, might break in Claims
+Namespace: System.Security.Principal, Type: WindowsPrincipal.Identity, Message: Usage of System.Security.Principal.WindowsPrincipal.Identity might break in Claims
+Namespace: System.Security.Principal, Type: WindowsIdentity.Name, Message: System.Security.Principal.WindowsIdentity.Name might break in Claims
+Namespace: System.Security.Principal, Type: NTaccount.Value, Message: Usage of System.Security.Principal.NTaccount.Value might break in Claims
+Namespace: System.Security.Principal, Type: SecurityIdentifier.Value, Message: Usage of System.Security.Principal.SecurityIdentifier.Value might break in Claims
+Namespace: Microsoft.SharePoint.SPPrincipal, Type: get_LoginName, Message: Usage of Microsoft.SharePoint.SPUser.LoginName might break in Claims
+Namespace: System.Security.Principal, Type: WindowsPrincipal.get_Identity, Message: Usage of System.Security.Principal.WindowsPrincipal.Identity might break in Claims
+Namespace: System.Security.Principal, Type: IIdentity.get_Name, Message: Usage of System.Security.Principal.WindowsIdentity.Name might break in Claims
+Namespace: System.Security.Principal, Type: WindowsIdentity.get_Name, Message: Usage of System.Security.Principal.WindowsIdentity.Name might break in Claims
+Namespace: Microsoft.SharePoint.Utilities, Type: SPPrincipalInfo.get_LoginName, Message: Usage of Microsoft.SharePoint.Utilities.SPPrincipalInfo.LoginName might break in Claims
+Namespace: System.Security.Principal, Type: IdentityReference.get_Value, Message: Usage of System.Security.Principal.NTaccount.Value or System.Security.Principal.SecurityIdentifier.Value might break in Claims

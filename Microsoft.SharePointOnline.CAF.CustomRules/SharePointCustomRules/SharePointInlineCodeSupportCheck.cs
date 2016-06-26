@@ -1,4 +1,4 @@
-namespace SharePointCustomRules
+﻿namespace SharePointCustomRules
 {
     using Microsoft.FxCop.Sdk;
     using System;
@@ -119,6 +119,10 @@ namespace SharePointCustomRules
             bool flag2 = false;
             try
             {
+                FileInfo[] files;
+                string str;
+                string str2;
+                Resolution resolution;
                 if (directoryInfo.Name.Equals("LAYOUT"))
                 {
                     flag2 = true;
@@ -129,22 +133,39 @@ namespace SharePointCustomRules
                 }
                 if (flag2 || flag)
                 {
-                    FileInfo[] files = directoryInfo.GetFiles("*.aspx");
+                    files = directoryInfo.GetFiles("*.aspx");
                     if (files.Count<FileInfo>() > 0)
                     {
-                        string path = string.Empty;
-                        Resolution resolution = null;
+                        str = string.Empty;
+                        str2 = string.Empty;
+                        resolution = null;
                         foreach (FileInfo info in files)
                         {
-                            path = directoryInfo.FullName + @"\" + info;
-                            if (File.Exists(path) && this.CheckIfInlineCodeExists(File.OpenText(path)))
+                            str = directoryInfo.FullName + @"\" + info;
+                            if (File.Exists(str) && this.CheckIfInlineCodeExists(File.OpenText(str)))
                             {
-                                resolution = base.GetResolution(new string[] { path });
-#if ORIGINAL 
+                                resolution = base.GetResolution(new string[] { str });
                                 base.Problems.Add(new Problem(resolution, Convert.ToString(this.m_iStringIdForProblem)));
-#else
-                                base.Problems.Add(new Problem(resolution, path, 0, Convert.ToString(this.m_iStringIdForProblem)));
-#endif
+                                this.m_iStringIdForProblem++;
+                            }
+                        }
+                    }
+                }
+                else if (!flag2)
+                {
+                    files = directoryInfo.GetFiles("*.aspx");
+                    if (files.Count<FileInfo>() > 0)
+                    {
+                        str = string.Empty;
+                        str2 = string.Empty;
+                        resolution = null;
+                        foreach (FileInfo info in files)
+                        {
+                            str = directoryInfo.FullName + @"\" + info;
+                            if (File.Exists(str) && this.CheckIfInlineCodeExists(File.OpenText(str)))
+                            {
+                                resolution = base.GetResolution(new string[] { str });
+                                base.Problems.Add(new Problem(resolution, Convert.ToString(this.m_iStringIdForProblem)));
                                 this.m_iStringIdForProblem++;
                             }
                         }
@@ -180,3 +201,4 @@ namespace SharePointCustomRules
         }
     }
 }
+

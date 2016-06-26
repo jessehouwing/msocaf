@@ -50,21 +50,6 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 2
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://jessehouwing:8080/tfs/defaultcollection
-		SccProjectUniqueName0 = Microsoft.SharePointOnline.CAF.CustomRules\\Microsoft.SharePointOnline.CAF.CustomRules.csproj
-		SccProjectName0 = Microsoft.SharePointOnline.CAF.CustomRules
-		SccAuxPath0 = http://jessehouwing:8080/tfs/defaultcollection
-		SccLocalPath0 = Microsoft.SharePointOnline.CAF.CustomRules
-		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName1 = Microsoft.SharePoint.DisposeChecker\\Microsoft.SharePoint.DisposeChecker.csproj
-		SccProjectName1 = Microsoft.SharePoint.DisposeChecker
-		SccAuxPath1 = http://jessehouwing:8080/tfs/defaultcollection
-		SccLocalPath1 = Microsoft.SharePoint.DisposeChecker
-		SccProvider1 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = CodeAnalysis.vsmdi
 	EndGlobalSection

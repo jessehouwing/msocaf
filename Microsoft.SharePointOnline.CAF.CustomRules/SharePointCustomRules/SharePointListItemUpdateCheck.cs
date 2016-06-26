@@ -1,4 +1,4 @@
-namespace SharePointCustomRules
+﻿namespace SharePointCustomRules
 {
     using Microsoft.FxCop.Sdk;
     using System;
@@ -27,11 +27,7 @@ namespace SharePointCustomRules
                             if (instruction.Value.ToString().Contains("SPItem.Update"))
                             {
                                 Resolution resolution = base.GetResolution(new string[] { method.ToString(), instruction.Value.ToString() });
-#if ORIGINAL
-                                 base.Problems.Add(new Problem(resolution, Convert.ToString(num)));
-#else
-                                base.Problems.Add(new Problem(resolution, instruction, Convert.ToString(num)));
-#endif
+                                base.Problems.Add(new Problem(resolution, Convert.ToString(num)));
                                 num++;
                             }
                         }
@@ -46,3 +42,4 @@ namespace SharePointCustomRules
         }
     }
 }
+
